@@ -1,11 +1,11 @@
 
 #===============================
-#  list()
-# add(tytuł, autor, rok)
-# save()
-# delete(id)
-# edit(id, tytuł, autor, rok)
-# search(kryterium,wartość)
+#[X] list()
+#[X] add(tytuł, autor, rok)
+#[X] save()
+#[X] delete(id)
+#[X] edit(id, tytuł, autor, rok)
+#[ ] search(kryterium,wartość)
 #===============================
 
 import json
@@ -47,6 +47,22 @@ def edit(database, id, tytul=None, autor=None, rok=None):
     if rok:
         database[id]['rok'] = rok
 
+def search(database, kryterium, argument):
+    if kryterium == "tytul":
+        for id, book in database.items():
+            if book['tytul'] == argument:
+                print(f"ID:{id} , tytul: {book['tytul']}, Autor: {book['autor']}, Rok: {book['rok']}")
+    elif kryterium == "autor":
+        for id, book in database.items():
+            if book['autor'] == argument:
+                print(f"ID:{id} , tytul: {book['tytul']}, Autor: {book['autor']}, Rok: {book['rok']}")
+    elif kryterium == "rok":
+        for id, book in database.items():
+            if book['rok'] == argument:
+                print(f"ID:{id} , tytul: {book['tytul']}, Autor: {book['autor']}, Rok: {book['rok']}")
+    else:
+        raise ValueError("Nie ma takiego kryterium")
+
 def book_list(database):
     for id, book in database.items():
         print(f"ID:{id} , tytul: {book['tytul']}, Autor: {book['autor']}, Rok: {book['rok']}")
@@ -55,11 +71,11 @@ def book_list(database):
 
 database = load(path_book)
 
-# add(database, 'Python dla bystrzaków','Nolan Illes',2012)
-book_list(database)
+#add(database, 'Python dla bystrzaków','Nolan Illes',2012)
+#book_list(database)
 
 
-
+search(database, "autor", "Nolan Illes")
 
 
 
