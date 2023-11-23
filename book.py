@@ -52,39 +52,44 @@ def search(database, kryterium, argument):
         for id, book in database.items():
             if book['tytul'] == argument:
                 print(f"ID:{id} , tytul: {book['tytul']}, Autor: {book['autor']}, Rok: {book['rok']}")
+                return
     elif kryterium == "autor":
         for id, book in database.items():
             if book['autor'] == argument:
                 print(f"ID:{id} , tytul: {book['tytul']}, Autor: {book['autor']}, Rok: {book['rok']}")
+                return
     elif kryterium == "rok":
         for id, book in database.items():
             if book['rok'] == argument:
                 print(f"ID:{id} , tytul: {book['tytul']}, Autor: {book['autor']}, Rok: {book['rok']}")
+                return
     else:
         raise ValueError("Nie ma takiego kryterium")
+    print("Nie znaleziona żadnego zgodnego elementu")
 
 def book_list(database):
     for id, book in database.items():
         print(f"ID:{id} , tytul: {book['tytul']}, Autor: {book['autor']}, Rok: {book['rok']}")
 
-
-
 database = load(path_book)
 
-#add(database, 'Python dla bystrzaków','Nolan Illes',2012)
-#book_list(database)
+#=======================================================
 
 
-search(database, "autor", "Nolan Illes")
+# add(database, 'Python dla bystrzaków','Nolan Illes',2012)
+# book_list(database)
 
 
-
-
-
-
+search(database, "tytul", "Python dla bystrzaków")
 
 
 
 
+
+
+
+
+
+#=======================================================
 
 save(path_book, database)
